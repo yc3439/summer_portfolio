@@ -1,10 +1,9 @@
 # Read data and construct a simple model
 adata<-read.csv("analysisData.csv",header=TRUE,stringsAsFactors=FALSE,na.strings = c("NA","N/A",""))
-
 # Read scoring data and apply model to generate predictions
 sdata = read.csv('scoringData.csv',header=TRUE,stringsAsFactors=FALSE,na.strings = c("NA","N/A",""))
 
-
+#FOR EVERY DATA TRANSFORMATION I MADE IN THE TESTING DATA, I WILL ALSO APPLY THE TRANSFORMATION IN THE TESTING DATA.
 #clean analysisData
 adata$time_since_now <- as.Date(adata$host_since)
 adata$time_since_now <- as.numeric(adata$time_since_now)
@@ -115,21 +114,6 @@ adata$cancellation_policy <- as.factor(adata$cancellation_policy)
 #vice versa sucks
 sdata$cancellation_policy <- as.factor(sdata$cancellation_policy)
 
-#between review time SUCKS
-# adata$between_review_time <- as.Date(adata$last_review) - as.Date(adata$first_review)
-# adata$between_review_time <- as.numeric(adata$between_review_time)
-#host verifications SUCKS
-# adata$host_verifications <- nchar(adata$host_verifications)
-#superhost SUCKS
-# adata$host_is_superhost <- as.factor(adata$host_is_superhost)
-#is location exact SUCKS
-# adata$is_location_exact <- as.factor(adata$is_location_exact)
-#host neighborhood SUCKS
-# adata$host_neighbourhood = as.factor(adata$host_neighbourhood)
-#has_availability manipulation #this factor sucks
-#adata$has_availability <- as.factor(adata$has_availability)#this factor sucks
-
-
 
 library(gbm)
 set.seed(617)
@@ -157,6 +141,9 @@ submissionfile<-data.frame(id=sdata$id,price=pred_boost_test)
 write.csv(submissionfile,"november191.csv",row.names=FALSE)
 
 
+################################################
+# THE FOLLOWING IS DISCARDED CODE
+################################################
 #library(gbm)
 #set.seed(617)
 # boost = gbm(earn~.,data=train,distribution="gaussian",
@@ -189,7 +176,19 @@ write.csv(submissionfile,"november191.csv",row.names=FALSE)
 # rmseBoostCV = sqrt(mean((predBoostCV-test$earn)^2)); rmseBoostCV
 
 
-
+#between review time has low variable importance
+# adata$between_review_time <- as.Date(adata$last_review) - as.Date(adata$first_review)
+# adata$between_review_time <- as.numeric(adata$between_review_time)
+#host verifications has low variable importance
+# adata$host_verifications <- nchar(adata$host_verifications)
+#superhost has low variable importance
+# adata$host_is_superhost <- as.factor(adata$host_is_superhost)
+#is location exact has low variable importance
+# adata$is_location_exact <- as.factor(adata$is_location_exact)
+#host neighborhood has low variable importance
+# adata$host_neighbourhood = as.factor(adata$host_neighbourhood)
+#has_availability manipulation #this factor sucks
+#adata$has_availability <- as.factor(adata$has_availability)#this factor sucks
 
 
 
