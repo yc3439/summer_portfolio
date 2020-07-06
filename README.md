@@ -4,7 +4,7 @@ Welcome to my personal file repository, I will periodically push some interestin
 
 keyword: python, R, Scikit-learn, Anomaly Detection, Predictive Analysis, Exploratory Data Analysis
 
-Most of these projects were related to machine learning. Some datasets were embedded within Python packages, some datasets were obtained from the public web. I hope to be more involved with the GibHub community by publishing my own work and explore others' repository. 
+Most of these projects were related to machine learning. Some datasets were embedded within Python packages, some datasets were obtained from the public web. I hope to be more involved with the GibHub community by publishing my own work and explore others' repositories. 
 
 Future work: in progress...
 Problems: in progress...
